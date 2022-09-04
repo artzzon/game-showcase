@@ -1,0 +1,49 @@
+.main {
+	display: grid;
+	gap: 20px;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	grid-template-rows: repeat(2, 1fr);
+	margin-top: 30px;
+	padding-left: 40px;
+}
+
+.game {
+	display: flex;
+	flex-direction: column;
+	width: 280px;
+	border-radius: 10px;
+	background-color: #202020;
+	transition: all 0.2s ease-in-out;
+
+	&:hover {
+		transform: scale(1.02);
+	}
+
+	.picture {
+		width: 100%;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+	}
+
+	.info {
+		display: flex;
+		flex-direction: column;
+		padding: 16px 16px 24px;
+
+		.platform {
+			width: 15px;
+			height: 15px;
+		}
+
+		.name {
+			margin-top: 10px;
+			font-size: 24px;
+			font-weight: bold;
+			transition: all 0.2s ease-in-out;
+
+			&:hover {
+				color: rgba(255, 255, 255, 0.5);
+			}
+		}
+	}
+}
