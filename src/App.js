@@ -133,18 +133,18 @@ const test = [
 function App() {
 	const [games, setGames] = React.useState([]);
 
-	// React.useEffect(() => {
-	//   axios.get('https://api.rawg.io/api/games?key=e52e77555e9e49ff825e2c9b8cada358&dates=2019-01-01,2019-12-31&ordering=-added')
-	//   .then(res => {
-	//     setGames(res.data.results);
-	//   })
-	// }, [])
+	React.useEffect(() => {
+	  axios.get('https://api.rawg.io/api/games?key=e52e77555e9e49ff825e2c9b8cada358&dates=2019-01-01,2019-12-31&ordering=-added')
+	  .then(res => {
+	    setGames(res.data.results);
+	  })
+	}, [])
 	console.log(games);
 	return (
 		<div className="wrapper">
 			<Header />
 			<SortAndFilter />
-			<Games games={test} />
+			<Games games={games} />
 		</div>
 	);
 }

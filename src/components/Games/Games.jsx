@@ -3,15 +3,11 @@ import React from 'react'
 import styles from './Games.module.scss'
 
 const Games = ({ games }) => {
+
   return (
     <div className={styles.main}>
       {games.map(game => (
-        <div className={styles.game}>
-          <img
-            className={styles.picture}
-            src={game?.background_image}
-            alt={game?.name}
-          />
+        <div className={styles.game} style={{backgroundImage: `url(${game?.background_image})`}}>
           <div className={styles.info}>
             <img
               className={styles.platform}
