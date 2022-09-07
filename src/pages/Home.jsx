@@ -152,12 +152,12 @@ import FilterByPlatform from '../components/SortAndFilter/FilterByPlatform';
 const Home = () => {
   const [games, setGames] = React.useState([]);
   const [currentPlatform, setCurrentPlatform] = React.useState('All platforms');
-  React.useEffect(() => {
-    axios.get('https://api.rawg.io/api/games?key=e52e77555e9e49ff825e2c9b8cada358&search=Apex')
-    .then(res => {
-      setGames(res.data.results);
-    })
-  }, [])
+  // React.useEffect(() => {
+  //   axios.get('https://api.rawg.io/api/games?key=e52e77555e9e49ff825e2c9b8cada358&search=Apex')
+  //   .then(res => {
+  //     setGames(res.data.results);
+  //   })
+  // }, [])
   const onClickChangePlatform = (platform) => {
     setCurrentPlatform(platform);
   }
