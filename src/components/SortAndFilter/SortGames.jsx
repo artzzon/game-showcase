@@ -12,7 +12,7 @@ const SortAndFilter = () => {
     setSortCategory(category);
     setSortPopup(false);
   }
-
+  
   return (
         <div className={styles.drop_down_button}>
           <button onClick={() => setSortPopup(true)}>

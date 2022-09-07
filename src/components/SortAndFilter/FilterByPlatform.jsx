@@ -2,33 +2,22 @@ import React from 'react'
 
 import styles from './SortAndFilter.module.scss'
 
-const filterCategories = [
-  {
-    platform: 'PC',
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/1280px-Windows_logo_-_2012.svg.png'
-  },
-  {
-    platform: 'PlayStation',
-    img: 'https://e7.pngegg.com/pngimages/466/840/png-clipart-playstation-4-logo-computer-icons-axe-logo-miscellaneous-angle.png'
-  },
-  {
-    platform: 'XBOX',
-    img: 'https://i.pinimg.com/originals/4a/f2/33/4af233aee4380197d2c926f65c77e378.jpg'
-  },
-];
-const FilterByPlatform = () => {
+const filterCategories = ['All platforms', 'PC', 'PlayStation', 'XBOX'];
+
+const FilterByPlatform = ({ onClickChangePlatform }) => {
   const [filterPopup, setFilterPopup] = React.useState(false);
   const [filterCategory, setFilterCategory] = React.useState(filterCategories[0]);
 
   const onClickFilterCategory = (category) => {
     setFilterCategory(category);
     setFilterPopup(false);
+    onClickChangePlatform(category);
   }
 
   return (
     <div className={styles.drop_down_button}>
       <button onClick={() => setFilterPopup(true)}>
-        Platforms
+        {filterCategory}
         <svg
           width="15px"
           fill="#757575"
