@@ -4,7 +4,7 @@ import styles from './SortAndFilter.module.scss'
 
 const sortCategories = ['Rating', 'Release Date'];
 
-const SortAndFilter = () => {
+const SortGames = () => {
   const [sortPopup, setSortPopup] = React.useState(false);
   const [sortCategory, setSortCategory] = React.useState(sortCategories[0]);
 
@@ -48,4 +48,4 @@ const SortAndFilter = () => {
   )
 }
 
-export default SortAndFilter
+export default SortGames;
