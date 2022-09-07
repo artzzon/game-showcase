@@ -1,5 +1,4 @@
-.sort_block,
-.filter_block {
+.drop_down_button {
 	position: relative;
 
 	&:last-child {
@@ -40,7 +39,7 @@ button {
 	align-items: center;
 	padding: 10px 16px;
 	border-radius: 10px;
-	min-width: 210px;
+	min-width: 185px;
 	border: none;
 	font: inherit;
 	background-color: #262626;
@@ -48,6 +47,8 @@ button {
 	transition: all 0.2s ease-in-out;
 
 	span {
+		padding-left: 5px;
+		padding-right: 5px;
 		transition: all 0.2s ease-in-out;
 		font-weight: bold;
 	}

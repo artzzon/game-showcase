@@ -4,7 +4,7 @@ import styles from './SortAndFilter.module.scss'
 
 const filterCategories = ['All', 'PC', 'PlayStation', 'Xbox', 'iOS', 'Android', 'Apple Macintosh', 'Linux', 'Nintendo', 'Web'];
 
-const FilterGames = () => {
+const FilterByPlatform = () => {
   const [filterPopup, setFilterPopup] = React.useState(false);
   const [filterCategory, setFilterCategory] = React.useState(filterCategories[0]);
 
@@ -14,8 +14,8 @@ const FilterGames = () => {
   }
 
   return (
-      <div className={styles.filter_block}>
-        <button className="filter" onClick={() => setFilterPopup(true)}>
+      <div className={styles.drop_down_button}>
+        <button onClick={() => setFilterPopup(true)}>
           Platforms
           <svg
             width="15px"
@@ -48,4 +48,4 @@ const FilterGames = () => {
   )
 }
 
-export default FilterGames;
+export default FilterByPlatform;

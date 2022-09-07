@@ -4,7 +4,7 @@ import axios from 'axios';
 import Games from '../components/Games/Games';
 import Header from '../components/Header/Header';
 import SortGames from '../components/SortAndFilter/SortGames';
-import FilterGames from '../components/SortAndFilter/FilterGames';
+import FilterByPlatform from '../components/SortAndFilter/FilterByPlatform';
 
 const test = [
   {
@@ -147,7 +147,7 @@ const Home = () => {
       </div>
       <div className="sort_and_filter">
         <SortGames />
-        <FilterGames />
+        <FilterByPlatform />
       </div>
       <Games games={test} />
     </>

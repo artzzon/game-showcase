@@ -14,7 +14,7 @@ const SortAndFilter = () => {
   }
 
   return (
-        <div className={styles.sort_block}>
+        <div className={styles.drop_down_button}>
           <button onClick={() => setSortPopup(true)}>
             Order by: <span>{sortCategory}</span>
             <svg
