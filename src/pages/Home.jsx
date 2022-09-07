@@ -149,15 +149,19 @@ import FilterByPlatform from '../components/SortAndFilter/FilterByPlatform';
 //   },
 // ];
 
+
+
 const Home = () => {
   const [games, setGames] = React.useState([]);
-  const [currentPlatform, setCurrentPlatform] = React.useState('All platforms');
-  // React.useEffect(() => {
-  //   axios.get('https://api.rawg.io/api/games?key=e52e77555e9e49ff825e2c9b8cada358&search=Apex')
-  //   .then(res => {
-  //     setGames(res.data.results);
-  //   })
-  // }, [])
+  const [currentPlatform, setCurrentPlatform] = React.useState('0');
+  console.log(currentPlatform)
+  React.useEffect(() => {
+    axios.get(`https://api.rawg.io/api/games?key=e52e77555e9e49ff825e2c9b8cada358&${currentPlatform !== '0' ? `platforms=${currentPlatform}` : ''}`)
+      .then(res => {
+        setGames(res.data.results);
+      })
+  }, [currentPlatform])
+
   const onClickChangePlatform = (platform) => {
     setCurrentPlatform(platform);
   }
@@ -170,9 +174,9 @@ const Home = () => {
       </div>
       <div className="sort_and_filter">
         <SortGames />
-        <FilterByPlatform onClickChangePlatform={onClickChangePlatform}/>
+        <FilterByPlatform onClickChangePlatform={onClickChangePlatform} />
       </div>
-      <Games games={games} currentPlatform={currentPlatform}/>
+      <Games games={games} currentPlatform={currentPlatform} />
     </>
   );
 }

@@ -11,13 +11,13 @@ const Search = () => {
 
   React.useEffect(() => {
     if (search.length !== 0) {
-      axios.get(`https://api.rawg.io/api/games?key=e52e77555e9e49ff825e2c9b8cada358&search=${searchResponse}`)
+      axios.get(`https://api.rawg.io/api/games?key=e52e77555e9e49ff825e2c9b8cada358&search=${searchResponse}&page_size=5`)
         .then(res => {
           setFoundGames(res.data.results);
         })
     }
   }, [searchResponse])
-  console.log(search)
+
   const updateSearchValue = React.useCallback(
     debounce((str) => {
       setSearchResponse(str);

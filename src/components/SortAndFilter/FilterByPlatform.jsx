@@ -2,16 +2,85 @@ import React from 'react'
 
 import styles from './SortAndFilter.module.scss'
 
-const filterCategories = ['All platforms', 'PC', 'PlayStation', 'XBOX'];
+const filterCategories = [
+  {
+    name: 'All platforms',
+    id: '0',
+  },
+  {
+    name: 'PC',
+    id: '4'
+  },
+  {
+    name: 'PlayStation 4',
+    id: '18'
+  },
+  {
+    name: 'XBOX One',
+    id: '1'
+  },
+  {
+    name: 'Nintendo Switch',
+    id: '7'
+  },
+  {
+    name: 'Apple Mac',
+    id: '5'
+  },
+  {
+    name: 'XBOX Series X|S',
+    id: '186'
+  },
+  {
+    name: 'PlayStation 5',
+    id: '187'
+  },
+  {
+    name: 'PlayStation 3',
+    id: '16'
+  },
+  {
+    name: 'XBOX 360',
+    id: '14'
+  },
+  {
+    name: 'Linux',
+    id: '6'
+  },
+  {
+    name: 'iOS',
+    id: '3'
+  },
+  {
+    name: 'Android',
+    id: '21'
+  },
+  {
+    name: 'PS Vita',
+    id: '19'
+  },
+  {
+    name: 'Web',
+    id: '171'
+  },
+  {
+    name: 'Wii U',
+    id: '10'
+  },
+  {
+    name: 'Nintendo 3DS',
+    id: '8'
+  },
+];
 
 const FilterByPlatform = ({ onClickChangePlatform }) => {
   const [filterPopup, setFilterPopup] = React.useState(false);
-  const [filterCategory, setFilterCategory] = React.useState(filterCategories[0]);
+  const [filterCategory, setFilterCategory] = React.useState(filterCategories[0].name);
 
   const onClickFilterCategory = (category) => {
-    setFilterCategory(category);
+    setFilterCategory(category.name);
     setFilterPopup(false);
-    onClickChangePlatform(category);
+    onClickChangePlatform(category.id);
   }
 
   return (
@@ -41,7 +110,7 @@ const FilterByPlatform = ({ onClickChangePlatform }) => {
         <div className={styles.popup}>
           <ul>
             {filterCategories.map(category => (
-              <li key={category} onClick={() => onClickFilterCategory(category)}>{category}</li>
+              <li key={category.id} onClick={() => onClickFilterCategory(category)}>{category.name}</li>
             ))}
           </ul>
         </div>}
