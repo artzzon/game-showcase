@@ -149,23 +149,52 @@ import FilterByPlatform from '../components/SortAndFilter/FilterByPlatform';
 //   },
 // ];
 
-
+const sortCategories = [
+  {
+    name: 'Rating',
+    requestName: 'rating'
+  },
+  {
+    name: 'Release Date',
+    requestName: 'released'
+  }
+];
 
 const Home = () => {
   const [games, setGames] = React.useState([]);
+  const [currentPage, setCurrentPage] = React.useState(1);
   const [currentPlatform, setCurrentPlatform] = React.useState('0');
-  
+  const [fetching, setFetching] = React.useState(true);
+  const [sortCategory, setSortCategory] = React.useState(sortCategories[0]);
+
   React.useEffect(() => {
-    axios.get(`https://api.rawg.io/api/games?key=e52e77555e9e49ff825e2c9b8cada358&${currentPlatform !== '0' ? `platforms=${currentPlatform}` : ''}`)
+    if (fetching) {
+    axios.get(`https://api.rawg.io/api/games?key=e52e77555e9e49ff825e2c9b8cada358&page=${currentPage}&page_size=10&${currentPlatform !== '0' ? `platforms=${currentPlatform}` : ''}&ordering=metacritic100,0`)
       .then(res => {
-        setGames(res.data.results);
+        setGames([...games, ...res.data.results]);
+        setCurrentPage(prevState => prevState + 1); //сделать проверку, что игр больше нет и не передавать запрос
       })
-  }, [currentPlatform])
+      .finally(() => setFetching(false));
+    }
+  }, [currentPlatform, sortCategory.requestName, fetching, currentPage, games])
+
+  const scrollHandler = (e) => {
+    if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 100) {
+      setFetching(true);
+    }
+  }
+
+  React.useEffect(() => {
+    document.addEventListener('scroll', scrollHandler);
+    return function () {
+      document.removeEventListener('scroll', scrollHandler);
+    }
+  }, [])
 
   const onClickChangePlatform = (platform) => {
     setCurrentPlatform(platform);
   }
-  console.log(games)
+
   return (
     <>
       <Header />
@@ -173,7 +202,7 @@ const Home = () => {
         <h1>Games</h1>
       </div>
       <div className="sort_and_filter">
-        <SortGames />
+        <SortGames sortCategories={sortCategories} sortCategory={sortCategory} setSortCategory={setSortCategory} />
         <FilterByPlatform onClickChangePlatform={onClickChangePlatform} />
       </div>
       <Games games={games} currentPlatform={currentPlatform} />

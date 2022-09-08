@@ -2,11 +2,8 @@ import React from 'react'
 
 import styles from './SortAndFilter.module.scss'
 
-const sortCategories = ['Rating', 'Release Date'];
-
-const SortGames = () => {
+const SortGames = ({ sortCategories, sortCategory, setSortCategory }) => {
   const [sortPopup, setSortPopup] = React.useState(false);
-  const [sortCategory, setSortCategory] = React.useState(sortCategories[0]);
 
   const onClickSortCategory = (category) => {
     setSortCategory(category);
@@ -16,7 +13,7 @@ const SortGames = () => {
   return (
         <div className={styles.drop_down_button}>
           <button onClick={() => setSortPopup(true)}>
-            Order by: <span>{sortCategory}</span>
+            Order by: <span>{sortCategory.name}</span>
             <svg
               width="15px"
               fill="#757575"
@@ -40,7 +37,7 @@ const SortGames = () => {
             <div className={styles.popup}>
               <ul>
                 {sortCategories.map(category => (
-                  <li key={category} onClick={() => onClickSortCategory(category)}>{category}</li>
+                  <li key={category.name} onClick={() => onClickSortCategory(category)}>{category.name}</li>
                 ))}
               </ul>
             </div>}
