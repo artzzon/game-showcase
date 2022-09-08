@@ -83,8 +83,19 @@ const FilterByPlatform = ({ onClickChangePlatform }) => {
     onClickChangePlatform(category.id);
   }
 
+  const ref = React.useRef();
+  React.useEffect(() => {
+    const checkClickedOutside = e => {
+      if (filterPopup && ref.current && !ref.current.contains(e.target)) {
+        setFilterPopup(false);
+      }
+    }
+    document.addEventListener('mousedown', checkClickedOutside)
+    return () => document.removeEventListener('mousedown', checkClickedOutside)
+  }, [filterPopup])
+
   return (
-    <div className={styles.drop_down_button}>
+    <div className={styles.drop_down_button} ref={ref}>
       <button onClick={() => setFilterPopup(true)}>
         {filterCategory}
         <svg

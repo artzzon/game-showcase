@@ -18,6 +18,17 @@ const Search = () => {
     }
   }, [searchRequest])
 
+  const ref = React.useRef();
+  React.useEffect(() => {
+    const checkClickedOutside = e => {
+      if (searchRequest && ref.current && !ref.current.contains(e.target)) {
+        setSearchRequest('');
+      }
+    }
+    document.addEventListener('mousedown', checkClickedOutside)
+    return () => document.removeEventListener('mousedown', checkClickedOutside)
+  }, [searchRequest])
+
   const updateSearchValue = React.useCallback(
     debounce((str) => {
       setSearchRequest(str);
@@ -31,7 +42,7 @@ const Search = () => {
   }
 
   return (
-    <div className={styles.input_area}>
+    <div className={styles.input_area} ref={ref}>
       <input type="text" placeholder="Search" onChange={onChangeInput} value={search} />
       {/*Переделать свг как бекграунд с исп. миксинов scss прим. 'https://stackoverflow.com/questions/13367868/how-to-modify-the-fill-color-of-an-svg-image-when-being-served-as-background-ima'*/}
       <svg
@@ -50,7 +61,7 @@ C52.074,52.304,52.086,51.671,51.704,51.273z M21.983,40c-10.477,0-19-8.523-19-19s
 S32.459,40,21.983,40z"
         />
       </svg>
-      {search &&
+      {searchRequest &&
         <div className={styles.search_dropdown}>
           <ul>
             {foundGames.map(game => (
