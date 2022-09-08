@@ -154,7 +154,7 @@ import FilterByPlatform from '../components/SortAndFilter/FilterByPlatform';
 const Home = () => {
   const [games, setGames] = React.useState([]);
   const [currentPlatform, setCurrentPlatform] = React.useState('0');
-  console.log(currentPlatform)
+  
   React.useEffect(() => {
     axios.get(`https://api.rawg.io/api/games?key=e52e77555e9e49ff825e2c9b8cada358&${currentPlatform !== '0' ? `platforms=${currentPlatform}` : ''}`)
       .then(res => {

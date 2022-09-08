@@ -22,8 +22,7 @@ const platforms = {
 
 };
 
-const Games = ({ games, currentPlatform }) => {
-  console.log(games)
+const Games = ({ games }) => {
   return (
     <div className={styles.main}>
       {games.map((game, i) => (

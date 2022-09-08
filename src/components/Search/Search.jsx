@@ -7,20 +7,20 @@ import styles from './Search.module.scss'
 const Search = () => {
   const [foundGames, setFoundGames] = React.useState([]);
   const [search, setSearch] = React.useState('');
-  const [searchResponse, setSearchResponse] = React.useState('');
+  const [searchRequest, setSearchRequest] = React.useState('');
 
   React.useEffect(() => {
-    if (search.length !== 0) {
-      axios.get(`https://api.rawg.io/api/games?key=e52e77555e9e49ff825e2c9b8cada358&search=${searchResponse}&page_size=5`)
+    if (searchRequest.length !== 0) {
+      axios.get(`https://api.rawg.io/api/games?key=e52e77555e9e49ff825e2c9b8cada358&search=${searchRequest}&page_size=5`)
         .then(res => {
           setFoundGames(res.data.results);
         })
     }
-  }, [searchResponse])
+  }, [searchRequest])
 
   const updateSearchValue = React.useCallback(
     debounce((str) => {
-      setSearchResponse(str);
+      setSearchRequest(str);
     }, 750),
     [],
   );
@@ -32,7 +32,6 @@ const Search = () => {
 
   return (
     <div className={styles.input_area}>
-      {/*сделать белый фон дива при фокусе на инпут*/}
       <input type="text" placeholder="Search" onChange={onChangeInput} value={search} />
       {/*Переделать свг как бекграунд с исп. миксинов scss прим. 'https://stackoverflow.com/questions/13367868/how-to-modify-the-fill-color-of-an-svg-image-when-being-served-as-background-ima'*/}
       <svg
