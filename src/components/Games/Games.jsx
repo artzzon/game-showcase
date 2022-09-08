@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 import styles from './Games.module.scss'
 
@@ -26,23 +27,25 @@ const Games = ({ games }) => {
   return (
     <div className={styles.main}>
       {games.map((game, i) => (
-        <div className={styles.game} key={i} style={{ backgroundImage: `url(${game?.background_image})` }}>
-          <div className={styles.info}>
-            <div className={styles.platform_block}>
-              {game.platforms.map((platform, i) => (
-                <img
-                  className={styles.platform}
-                  key={i}
-                  src={platforms[platform.platform.id]}
-                  alt="platform_icon"
-                />
-              ))}
+        <Link key={i} to="gamepage">
+          <div className={styles.game}  style={{ backgroundImage: `url(${game?.background_image})` }}>
+            <div className={styles.info}>
+              <div className={styles.platform_block}>
+                {game.platforms.map((platform, i) => (
+                  <img
+                    className={styles.platform}
+                    key={i}
+                    src={platforms[platform.platform.id]}
+                    alt="platform_icon"
+                  />
+                ))}
+              </div>
+              <span className={styles.name}>{game?.name}</span>
+              <span>Release date: {game?.released}</span>
+              <span>Rating: {game?.metacritic}</span>
             </div>
-            <a href="/" className={styles.name}>{game?.name}</a>
-            <span>Release date: {game?.released}</span>
-            <span>Rating: {game?.metacritic}</span>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   )
