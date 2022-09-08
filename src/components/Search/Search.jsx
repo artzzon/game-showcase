@@ -65,7 +65,7 @@ S32.459,40,21.983,40z"
         <div className={styles.search_dropdown}>
           <ul>
             {foundGames.map(game => (
-              <li>
+              <li key={game?.id}>
                 <img
                   width='36px'
                   height='47px'
